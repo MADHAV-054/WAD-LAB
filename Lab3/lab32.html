@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Object-Oriented Software Engineering</title>
+    <style>
+      body {
+        background-color: #a9a9a9;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h1 {
+        margin-bottom: 20px;
+      }
+
+      input[type="text"],
+      input[type="submit"] {
+        width: 125%;
+        padding: 10px;
+        margin-bottom: 30px;
+        box-sizing: border-box;
+      }
+
+      input[type="submit"] {
+        background-color: #002fa7;
+        color: white;
+        cursor: pointer;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #0000cd;
+      }
+
+      .result {
+        margin-top: 20px;
+        font-size: 18px;
+        color: green;
+      }
+
+      .result.incorrect {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Object-Oriented Software Engineering Quiz</h1>
+    <p id="question"></p>
+    <form id="quizForm">
+      <input type="text" id="answer" placeholder="Enter your answer here" />
+      <input type="submit" value="Submit" />
+    </form>
+    <p id="result" class="result"></p>
+
+    <script>
+      const questions = [
+        {
+          question: '"What is SDLC"?',
+          answer: "Software devlopment life cycle",
+        },
+        {
+          question: "What is SRS ?",
+          answer: "Software Requirement Specification",
+        },
+        {
+          question: ' What is UML?',
+          answer: " Unified Modeling Language ",
+        },
+      ];
+      let currentQuestion = 0;
+
+      const quizForm = document.getElementById("quizForm");
+      const questionP = document.getElementById("question");
+      const answerInput = document.getElementById("answer");
+      const resultP = document.getElementById("result");
+
+      function showQuestion() {
+        if (currentQuestion < questions.length) {
+          questionP.textContent = questions[currentQuestion].question;
+        } else {
+          quizForm.style.display = "none";
+          resultP.textContent = "Quiz completed!";
+        }
+      }
+
+      quizForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const userAnswer = answerInput.value.trim().toLowerCase();
+        const correctAnswer = questions[currentQuestion].answer.toLowerCase();
+
+        if (userAnswer === correctAnswer) {
+          resultP.textContent = "Correct!";
+          resultP.classList.add("correct");
+          resultP.classList.remove("incorrect");
+        } else {
+          resultP.textContent = `Incorrect. The correct answer is ${correctAnswer}.`;
+          resultP.classList.add("incorrect");
+          resultP.classList.remove("correct");
+        }
+
+        currentQuestion++;
+        answerInput.value = "";
+        answerInput.focus();
+        showQuestion();
+      });
+
+      showQuestion();
+    </script>
+  </body>
+</html>

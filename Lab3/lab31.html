@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Greeting Message</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #00ced1;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .greeting-container {
+        text-align: center;
+        background-color: #e0ffff;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        color: #191970;
+        font-size: 40px;
+        margin-bottom: 20px;
+      }
+
+      p {
+        color: #0047ab;
+        font-size: 20px;
+        line-height: 2.0;
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        var currentHour = new Date().getHours();
+
+        var greeting;
+        if (currentHour >= 5 && currentHour < 12) {
+          greeting = "Good morning!";
+        } else if (currentHour >= 12 && currentHour < 18) {
+          greeting = "Good afternoon!";
+        } else {
+          greeting = "Good evening!";
+        }
+
+        document.getElementById("greeting").innerText = greeting;
+      };
+    </script>
+  </head>
+  <body>
+    <div class="greeting-container">
+      <h1 id="greeting"></h1>
+      <p style="font-family:Serif;">Welcome to our Webpage , We Offer the Best for You!!!</p>
+    </div>
+  </body>
+</html>

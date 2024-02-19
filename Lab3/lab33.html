@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Online Calculator</title>
+    <style>
+      body {
+        background-color: #a9a9a9;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      h1 {
+        margin-bottom: 20px;
+      }
+
+      input[type="text"],
+      select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+      }
+
+      input[type="text"] {
+        width: 200px;
+      }
+
+      select {
+        margin-bottom: 20px;
+        width: 200px;
+      }
+
+      button {
+        background-color: #002fa7;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10px;
+      }
+
+      button:hover {
+        background-color: #00ff00;
+      }
+
+      #result {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Basic Online Calculator</h1>
+    <input type="text" id="number1" placeholder="First number" />
+
+    <select id="operation">
+      <option value="+">+</option>
+      <option value="-">-</option>
+      <option value="*">*</option>
+      <option value="/">/</option>
+    </select>
+    <input type="text" id="number2" placeholder="Second number" />
+    <button onclick="calculate()">Calculate</button>
+    <p id="result"></p>
+
+    <!-- Include your JavaScript code here or use an external file -->
+    <script>
+      function calculate() {
+        const number1 = parseFloat(document.getElementById("number1").value);
+        const number2 = parseFloat(document.getElementById("number2").value);
+        const operation = document.getElementById("operation").value;
+
+        if (isNaN(number1) || isNaN(number2)) {
+          alert("Please enter valid numbers.");
+          return;
+        }
+
+        let result;
+
+        switch (operation) {
+          case "+":
+            result = number1 + number2;
+            break;
+          case "-":
+            result = number1 - number2;
+            break;
+          case "*":
+            result = number1 * number2;
+            break;
+          case "/":
+            if (number2 === 0) {
+              alert("Cannot divide by zero.");
+              return;
+            }
+            result = number1 / number2;
+            break;
+          default:
+            alert("Invalid operation.");
+            return;
+        }
+
+        document.getElementById("result").innerText = "Result: " + result;
+      }
+    </script>
+  </body>
+</html>

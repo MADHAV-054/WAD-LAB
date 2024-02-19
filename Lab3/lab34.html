@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Details Application</title>
+    <style>
+      body {
+        background-color: #808080;
+        font-family: sans-serif;
+        margin: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 25px;
+        margin-bottom: 20px;
+      }
+
+      form {
+        background-color: #ffffff;
+        width: 350px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 20px;
+        box-shadow: 0 0 2px #ccc;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="password"],
+      input[type="date"] {
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        width: 95%;
+        background-color: #d3d3d3;
+        margin-bottom: 15px;
+        transition: border 0.3s ease-in-out;
+      }
+
+      input:focus {
+        outline: none;
+        border: 1px solid #ccc;
+      }
+
+      .error {
+        color: red;
+        font-size: 0.8em;
+        margin-bottom: 10px;
+      }
+
+      input[type="submit"] {
+        background-color: #191970;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #778899 ;
+      }
+    </style>
+    <script>
+      function validateForm() {
+        var name = document.getElementById("name").value;
+        if (name.length < 4 || !/^[a-zA-Z]+$/.test(name)) {
+          alert("Name must be at least 3 letters and contain only alphabets.");
+          return false;
+        }
+
+        var email = document.getElementById("email").value;
+        if (!/\S+@\S+\.\S+/.test(email)) {
+          alert("Please enter a valid email address.");
+          return false;
+        }
+
+        var password = document.getElementById("password").value;
+        var passwordRegex =
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if (!passwordRegex.test(password)) {
+          alert(
+            "Password must be at least 8 characters long and contain at least one uppercase, one lowercase, one number, and one special character."
+          );
+          return false;
+        }
+
+        var phone = document.getElementById("phone").value;
+        if (!/^[0-9]{10}$/.test(phone)) {
+          alert("Phone number must be 10 digits.");
+          return false;
+        }
+
+        return true;
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Application Form</h1>
+    <form onsubmit="return validateForm()">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" /><br /><br />
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" /><br /><br />
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" /><br /><br />
+      <label for="phone">Phone Number:</label>
+      <input type="text" id="phone" name="phone" /><br /><br />
+      <label for="dateOfBirth">Date of Birth:</label>
+      <input type="date" id="dateOfBirth" name="dateOfBirth" /><br /><br />
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>
