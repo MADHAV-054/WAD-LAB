@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Astronomy Stars XML Transformation</title>
+
+    <script>
+      function transformXML() {
+        var loader = document.getElementById("loader");
+        loader.style.display = "block";
+        var xml = new XMLHttpRequest();
+        xml.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            var xsl = new XMLHttpRequest();
+            xsl.onreadystatechange = function () {
+              if (this.readyState == 4 && this.status == 200) {
+                var xsltProcessor = new XSLTProcessor();
+                xsltProcessor.importStylesheet(this.responseXML);
+                var resultDocument = xsltProcessor.transformToDocument(
+                  xml.responseXML
+                );
+                document.getElementById("result").innerHTML =
+                  new XMLSerializer().serializeToString(resultDocument);
+                loader.style.display = "none";
+                document.getElementById("result").style.opacity = 1;
+              }
+            };
+            xsl.open("GET", "planets.xslt", true);
+            xsl.send();
+          }
+        };
+        xml.open("GET", "planets.xml", true);
+        xml.send();
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Planets Information</h1>
+    <button onclick="transformXML()">Transform XML</button>
+    <div id="loader" class="loader"></div>
+    <div id="result" style="opacity: 0"></div>
+  </body>
+</html>
