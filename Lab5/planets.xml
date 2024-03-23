@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <Planets>
+<Planets>
     <planet>
         <id>1</id>
         <name>Mercury</name>
@@ -140,4 +140,4 @@
         <temp>weighs 17 times as much as Earth and is more than twice as large</temp>
         <moon>560 light-years from Earth</moon>
     </planet>
-    </Planets>
+</Planets>
